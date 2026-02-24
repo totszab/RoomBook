@@ -1,22 +1,17 @@
-package com.example.roombook.entity;
+package com.example.roombook.DTO;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "offices")
-public class Office {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OfficeResponse {
     private Long id;
-
-    @Column(nullable = false, unique = true)
-    private String code;
-
-    @Column(nullable = false)
     private String name;
-
+    private String code;
     private Integer capacity;
+
+    public OfficeResponse(Long id, String name, String code, Integer capacity) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.capacity = capacity;
+    }
 
     public Long getId() {
         return id;
@@ -26,20 +21,20 @@ public class Office {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Integer getCapacity() {

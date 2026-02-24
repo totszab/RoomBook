@@ -1,0 +1,16 @@
+com\example\roombook\controller\DepartmentController.class
+com\example\roombook\service\BookingService.class
+com\example\roombook\service\DepartmentServiceImpl.class
+com\example\roombook\entity\Booking.class
+com\example\roombook\controller\OfficeController.class
+com\example\roombook\repository\OfficeRepository.class
+com\example\roombook\DTO\BookingRequest.class
+com\example\roombook\service\OfficeService.class
+com\example\roombook\service\DepartmentService.class
+com\example\roombook\entity\Office.class
+com\example\roombook\controller\BookingController.class
+com\example\roombook\entity\Department.class
+com\example\roombook\repository\BookingRepository.class
+com\example\roombook\entity\Department$DepartmentBuilder.class
+com\example\roombook\repository\DepartmentRepository.class
+com\example\roombook\RoomBookApplication.class

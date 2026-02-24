@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/room-book/departments")
 public class DepartmentController {
     // Annotation
     @Autowired
     private DepartmentService departmentService;
 
     // Save operation
-    @PostMapping("/departments")
+    @PostMapping
     public Department saveDepartment(
             /*@Valid*/ @RequestBody Department department)
     {
@@ -22,14 +23,14 @@ public class DepartmentController {
     }
 
     // Read operation
-    @GetMapping("/departments")
+    @GetMapping
     public List<Department> fetchDepartmentList()
     {
         return departmentService.fetchDepartmentList();
     }
 
     // Update operation
-    @PutMapping("/departments/{id}")
+    @PutMapping("/{id}")
     public Department
     updateDepartment(@RequestBody Department department,
                      @PathVariable("id") Long departmentId)
@@ -39,7 +40,7 @@ public class DepartmentController {
     }
 
     // Delete operation
-    @DeleteMapping("/departments/{id}")
+    @DeleteMapping("/{id}")
     public String deleteDepartmentById(@PathVariable("id")
                                        Long departmentId)
     {

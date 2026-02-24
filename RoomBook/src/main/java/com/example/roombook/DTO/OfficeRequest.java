@@ -1,30 +1,17 @@
-package com.example.roombook.entity;
+package com.example.roombook.DTO;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "offices")
-public class Office {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true)
+public class OfficeRequest {
+    @NotBlank
     private String code;
 
-    @Column(nullable = false)
+    @NotBlank
     private String name;
 
+    @NotNull
     private Integer capacity;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;
