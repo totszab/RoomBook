@@ -1,12 +1,12 @@
 package com.example.roombook.service;
 
+import com.example.roombook.DTO.BookingRequest;
 import com.example.roombook.entity.Booking;
 import com.example.roombook.entity.Office;
 import com.example.roombook.repository.BookingRepository;
 import com.example.roombook.repository.OfficeRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,37 +20,31 @@ public class BookingService {
         this.officeRepository = officeRepository;
     }
 
-    public Booking createBooking(
-            Long officeId,
-            LocalDateTime startTime,
-            LocalDateTime endTime,
-            String bookedBy,
-            String note
-    ) {
-        if (startTime.isAfter(endTime) || startTime.isEqual(endTime)) {
+    public Booking createBooking(BookingRequest request) {
+        if (request.getStartTime().isAfter(request.getEndTime()) || request.getStartTime().isEqual(request.getEndTime())) {
             throw new IllegalArgumentException("Invalid time interval");
         }
 
-        Office office = officeRepository.findById(officeId)
+        Office office = officeRepository.findById(request.getOfficeId())
                 .orElseThrow(() -> new RuntimeException("Office not found"));
 
-        boolean conflict = bookingRepository
+        boolean isOverlapping = bookingRepository
                 .existsByOfficeIdAndStartTimeLessThanAndEndTimeGreaterThan(
-                        officeId,
-                        endTime,
-                        startTime
+                        request.getOfficeId(),
+                        request.getEndTime(),
+                        request.getStartTime()
                 );
 
-        if (conflict) {
+        if (isOverlapping) {
             throw new IllegalStateException("Office already booked in this time range");
         }
 
         Booking booking = new Booking();
         booking.setOffice(office);
-        booking.setStartTime(startTime);
-        booking.setEndTime(endTime);
-        booking.setBookedBy(bookedBy);
-        booking.setNote(note);
+        booking.setStartTime(request.getStartTime());
+        booking.setEndTime(request.getEndTime());
+        booking.setBookedBy(request.getBookedBy());
+        booking.setNote(request.getNote());
 
         return bookingRepository.save(booking);
     }
