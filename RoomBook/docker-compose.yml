@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: mariadb:12
+    container_name: roombook-db
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: roombook
+      MARIADB_USER: roombook
+      MARIADB_PASSWORD: roombook
+    ports:
+      - "3307:3306"
+    volumes:
+      - roombook_db_data:/var/lib/mysql
+      - ./docker/mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  app:
+    build: .
+#    image: roombook-app:latest
+    container_name: roombook-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://roombook-db:3306/roombook
+      SPRING_DATASOURCE_USERNAME: roombook
+      SPRING_DATASOURCE_PASSWORD: roombook
+
+volumes:
+  roombook_db_data:

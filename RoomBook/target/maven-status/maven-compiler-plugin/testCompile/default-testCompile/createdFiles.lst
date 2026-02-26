@@ -1,1 +1,2 @@
-com\example\roombook\RoomBookApplicationTests.class
+com\example\roombook\controller\OfficeControllerIT.class
+com\example\roombook\controller\BookingControllerIT.class
