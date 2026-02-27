@@ -2,10 +2,7 @@ package com.example.roombook.controller;
 
 import com.example.roombook.DTO.booking.BookingRequest;
 import com.example.roombook.DTO.booking.BookingResponse;
-import com.example.roombook.converter.BookingConverter;
-import com.example.roombook.entity.Booking;
 import com.example.roombook.service.BookingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,18 +10,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/room-book/bookings")
 public class BookingController {
-    @Autowired
-    private BookingConverter bookingConverter;
     private final BookingService bookingService;
 
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public BookingResponse createBooking(@RequestBody BookingRequest request) {
-        Booking booking = bookingService.createBooking(request);
-        return bookingConverter.getBookingResponse(booking);
+        return bookingService.createBooking(request);
     }
 
     @GetMapping("/{bookingId}")

@@ -14,7 +14,6 @@ com\example\roombook\exception\ErrorCode.class
 com\example\roombook\exception\GlobalExceptionHandler$1.class
 com\example\roombook\entity\Office.class
 com\example\roombook\controller\BookingController.class
-com\example\roombook\DTO\booking\BookingSearchRequest.class
 com\example\roombook\exception\ApiError.class
 com\example\roombook\repository\BookingRepository.class
 com\example\roombook\RoomBookApplication.class

@@ -9,6 +9,7 @@ import com.example.roombook.exception.ErrorCode;
 import com.example.roombook.repository.BookingRepository;
 import com.example.roombook.repository.OfficeRepository;
 import com.example.roombook.specification.BookingSpecification;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class BookingService {
         this.officeRepository = officeRepository;
     }
 
-    public Booking createBooking(BookingRequest request) {
+    @Transactional
+    public BookingResponse createBooking(BookingRequest request) {
         if (request.getStartTime().isAfter(request.getEndTime()) || request.getStartTime().isEqual(request.getEndTime())) {
             throw new BusinessException(ErrorCode.INVALID_BOOKING_TIME);
         }
@@ -52,7 +54,8 @@ public class BookingService {
         booking.setUserId(request.getUserId());
         booking.setNote(request.getNote());
 
-        return bookingRepository.save(booking);
+        Booking savedBooking = bookingRepository.save(booking);
+        return createBookingResponse(savedBooking);
     }
 
     public List<Booking> getBookingsForOffice(Long officeId) {
@@ -69,12 +72,7 @@ public class BookingService {
                         new BusinessException(ErrorCode.BOOKING_NOT_FOUND)
                 );
 
-        return new BookingResponse(booking.getId(),
-                booking.getOffice().getId(),
-                booking.getStartTime(),
-                booking.getEndTime(),
-                booking.getUserId(),
-                booking.getNote());
+        return createBookingResponse(booking);
     }
 
     public List<BookingResponse> search(BookingRequest request) {
@@ -88,14 +86,7 @@ public class BookingService {
         List<BookingResponse> responses = new ArrayList<>();
 
         for (Booking booking : bookings) {
-            BookingResponse response = new BookingResponse(booking.getId(),
-                    booking.getOffice().getId(),
-                    booking.getStartTime(),
-                    booking.getEndTime(),
-                    booking.getUserId(),
-                    booking.getNote());
-
-            responses.add(response);
+            responses.add(createBookingResponse(booking));
         }
 
         return responses;
@@ -104,5 +95,14 @@ public class BookingService {
     public void deleteBooking(Long bookingId) {
         Booking booking = bookingRepository.findById(bookingId).orElseThrow(() -> new BusinessException(ErrorCode.BOOKING_NOT_FOUND));
         bookingRepository.delete(booking);
+    }
+
+    private BookingResponse createBookingResponse(Booking booking) {
+        return new BookingResponse(booking.getId(),
+                booking.getOffice().getId(),
+                booking.getStartTime(),
+                booking.getEndTime(),
+                booking.getUserId(),
+                booking.getNote());
     }
 }
