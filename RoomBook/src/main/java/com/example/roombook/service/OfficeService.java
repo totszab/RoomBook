@@ -1,6 +1,6 @@
 package com.example.roombook.service;
 
-import com.example.roombook.DTO.OfficeRequest;
+import com.example.roombook.DTO.office.OfficeRequest;
 import com.example.roombook.entity.Office;
 import com.example.roombook.exception.BusinessException;
 import com.example.roombook.exception.ErrorCode;

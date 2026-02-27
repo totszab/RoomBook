@@ -1,14 +1,18 @@
 package com.example.roombook.service;
 
-import com.example.roombook.DTO.BookingRequest;
+import com.example.roombook.DTO.booking.BookingRequest;
+import com.example.roombook.DTO.booking.BookingResponse;
 import com.example.roombook.entity.Booking;
 import com.example.roombook.entity.Office;
 import com.example.roombook.exception.BusinessException;
 import com.example.roombook.exception.ErrorCode;
 import com.example.roombook.repository.BookingRepository;
 import com.example.roombook.repository.OfficeRepository;
+import com.example.roombook.specification.BookingSpecification;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,6 +60,45 @@ public class BookingService {
             throw new BusinessException(ErrorCode.OFFICE_NOT_FOUND);
         }
         return bookingRepository.findByOfficeId(officeId);
+    }
+
+    public BookingResponse getById(Long bookingId) {
+
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() ->
+                        new BusinessException(ErrorCode.BOOKING_NOT_FOUND)
+                );
+
+        return new BookingResponse(booking.getId(),
+                booking.getOffice().getId(),
+                booking.getStartTime(),
+                booking.getEndTime(),
+                booking.getUserId(),
+                booking.getNote());
+    }
+
+    public List<BookingResponse> search(BookingRequest request) {
+
+        Specification<Booking> specification =
+                BookingSpecification.bySearch(request);
+
+        List<Booking> bookings =
+                bookingRepository.findAll(specification);
+
+        List<BookingResponse> responses = new ArrayList<>();
+
+        for (Booking booking : bookings) {
+            BookingResponse response = new BookingResponse(booking.getId(),
+                    booking.getOffice().getId(),
+                    booking.getStartTime(),
+                    booking.getEndTime(),
+                    booking.getUserId(),
+                    booking.getNote());
+
+            responses.add(response);
+        }
+
+        return responses;
     }
 
     public void deleteBooking(Long bookingId) {

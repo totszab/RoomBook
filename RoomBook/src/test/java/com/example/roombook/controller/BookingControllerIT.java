@@ -1,6 +1,6 @@
 package com.example.roombook.controller;
 
-import com.example.roombook.DTO.BookingRequest;
+import com.example.roombook.DTO.booking.BookingRequest;
 import com.example.roombook.entity.Booking;
 import com.example.roombook.entity.Office;
 import com.example.roombook.repository.BookingRepository;

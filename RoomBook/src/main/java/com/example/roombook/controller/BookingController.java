@@ -1,7 +1,7 @@
 package com.example.roombook.controller;
 
-import com.example.roombook.DTO.BookingRequest;
-import com.example.roombook.DTO.BookingResponse;
+import com.example.roombook.DTO.booking.BookingRequest;
+import com.example.roombook.DTO.booking.BookingResponse;
 import com.example.roombook.converter.BookingConverter;
 import com.example.roombook.entity.Booking;
 import com.example.roombook.service.BookingService;
@@ -27,16 +27,14 @@ public class BookingController {
         return bookingConverter.getBookingResponse(booking);
     }
 
-    @GetMapping("/office/{officeId}")
-    public List<BookingResponse> getBookingsForOffice(@PathVariable Long officeId) {
-        return bookingService.getBookingsForOffice(officeId).stream().map(o -> new BookingResponse(
-                o.getId(),
-                o.getOffice().getId(),
-                o.getStartTime(),
-                o.getEndTime(),
-                o.getUserId(),
-                o.getNote()
-        )).toList();
+    @GetMapping("/{bookingId}")
+    public BookingResponse getById(@PathVariable Long bookingId) {
+        return bookingService.getById(bookingId);
+    }
+
+    @PostMapping("/search")
+    public List<BookingResponse> search(@RequestBody BookingRequest request) {
+        return bookingService.search(request);
     }
 
     @DeleteMapping("/{bookingId}")

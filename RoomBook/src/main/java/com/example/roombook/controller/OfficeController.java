@@ -1,7 +1,7 @@
 package com.example.roombook.controller;
 
-import com.example.roombook.DTO.OfficeRequest;
-import com.example.roombook.DTO.OfficeResponse;
+import com.example.roombook.DTO.office.OfficeRequest;
+import com.example.roombook.DTO.office.OfficeResponse;
 import com.example.roombook.entity.Office;
 import com.example.roombook.service.OfficeService;
 import org.springframework.http.HttpStatus;

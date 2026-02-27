@@ -1,6 +1,6 @@
 package com.example.roombook.controller;
 
-import com.example.roombook.DTO.OfficeRequest;
+import com.example.roombook.DTO.office.OfficeRequest;
 import com.example.roombook.repository.OfficeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;

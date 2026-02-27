@@ -1,6 +1,6 @@
 package com.example.roombook.converter;
 
-import com.example.roombook.DTO.BookingResponse;
+import com.example.roombook.DTO.booking.BookingResponse;
 import com.example.roombook.entity.Booking;
 import org.springframework.stereotype.Component;
 
