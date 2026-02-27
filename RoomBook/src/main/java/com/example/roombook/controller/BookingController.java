@@ -38,4 +38,9 @@ public class BookingController {
                 o.getNote()
         )).toList();
     }
+
+    @DeleteMapping("/{bookingId}")
+    public void deleteBooking(@PathVariable Long bookingId) {
+        bookingService.deleteBooking(bookingId);
+    }
 }

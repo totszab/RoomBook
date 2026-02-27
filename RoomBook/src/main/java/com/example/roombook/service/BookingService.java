@@ -3,6 +3,8 @@ package com.example.roombook.service;
 import com.example.roombook.DTO.BookingRequest;
 import com.example.roombook.entity.Booking;
 import com.example.roombook.entity.Office;
+import com.example.roombook.exception.BusinessException;
+import com.example.roombook.exception.ErrorCode;
 import com.example.roombook.repository.BookingRepository;
 import com.example.roombook.repository.OfficeRepository;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,11 @@ public class BookingService {
 
     public Booking createBooking(BookingRequest request) {
         if (request.getStartTime().isAfter(request.getEndTime()) || request.getStartTime().isEqual(request.getEndTime())) {
-            throw new IllegalArgumentException("Invalid time interval");
+            throw new BusinessException(ErrorCode.INVALID_BOOKING_TIME);
         }
 
         Office office = officeRepository.findById(request.getOfficeId())
-                .orElseThrow(() -> new RuntimeException("Office not found"));
+                .orElseThrow(() -> new BusinessException(ErrorCode.OFFICE_NOT_FOUND));
 
         boolean isOverlapping = bookingRepository
                 .existsByOfficeIdAndStartTimeLessThanAndEndTimeGreaterThan(
@@ -36,7 +38,7 @@ public class BookingService {
                 );
 
         if (isOverlapping) {
-            throw new IllegalStateException("Office already booked in this time range");
+            throw new BusinessException(ErrorCode.BOOKING_OVERLAP);
         }
 
         Booking booking = new Booking();
@@ -50,6 +52,14 @@ public class BookingService {
     }
 
     public List<Booking> getBookingsForOffice(Long officeId) {
+        if (!officeRepository.existsById(officeId)) {
+            throw new BusinessException(ErrorCode.OFFICE_NOT_FOUND);
+        }
         return bookingRepository.findByOfficeId(officeId);
+    }
+
+    public void deleteBooking(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(() -> new BusinessException(ErrorCode.BOOKING_NOT_FOUND));
+        bookingRepository.delete(booking);
     }
 }

@@ -2,13 +2,17 @@ C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\service\OfficeService.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\DTO\OfficeRequest.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\DTO\BookingRequest.java
+C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\exception\GlobalExceptionHandler.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\DTO\OfficeResponse.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\repository\OfficeRepository.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\converter\BookingConverter.java
+C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\exception\ErrorCode.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\DTO\BookingResponse.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\entity\Booking.java
+C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\exception\BusinessException.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\controller\BookingController.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\service\BookingService.java
+C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\exception\ApiError.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\repository\BookingRepository.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\RoomBookApplication.java
 C:\Users\totsz\IdeaProjects\RoomBook\RoomBook\src\main\java\com\example\roombook\entity\Office.java

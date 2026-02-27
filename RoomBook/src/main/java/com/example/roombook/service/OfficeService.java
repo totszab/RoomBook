@@ -2,6 +2,8 @@ package com.example.roombook.service;
 
 import com.example.roombook.DTO.OfficeRequest;
 import com.example.roombook.entity.Office;
+import com.example.roombook.exception.BusinessException;
+import com.example.roombook.exception.ErrorCode;
 import com.example.roombook.repository.OfficeRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class OfficeService {
 
     public Office getOfficeById(Long id) {
         return officeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Office not found"));
+                .orElseThrow(() -> new BusinessException(ErrorCode.OFFICE_NOT_FOUND));
     }
 
     public Office createOffice(OfficeRequest request) {

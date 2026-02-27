@@ -4,8 +4,13 @@ com\example\roombook\controller\OfficeController.class
 com\example\roombook\repository\OfficeRepository.class
 com\example\roombook\DTO\BookingRequest.class
 com\example\roombook\service\OfficeService.class
+com\example\roombook\exception\BusinessException.class
+com\example\roombook\exception\GlobalExceptionHandler.class
+com\example\roombook\exception\ErrorCode.class
+com\example\roombook\exception\GlobalExceptionHandler$1.class
 com\example\roombook\entity\Office.class
 com\example\roombook\controller\BookingController.class
+com\example\roombook\exception\ApiError.class
 com\example\roombook\repository\BookingRepository.class
 com\example\roombook\DTO\OfficeRequest.class
 com\example\roombook\RoomBookApplication.class
