@@ -34,7 +34,7 @@ public class BookingController {
                 o.getOffice().getId(),
                 o.getStartTime(),
                 o.getEndTime(),
-                o.getBookedBy(),
+                o.getUserId(),
                 o.getNote()
         )).toList();
     }

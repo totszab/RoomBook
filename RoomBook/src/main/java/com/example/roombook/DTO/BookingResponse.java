@@ -7,15 +7,15 @@ public class BookingResponse {
     private Long officeId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String bookedBy;
+    private String userId;
     private String note;
 
-    public BookingResponse(Long id, Long officeId, LocalDateTime startTime, LocalDateTime endTime, String bookedBy, String note) {
+    public BookingResponse(Long id, Long officeId, LocalDateTime startTime, LocalDateTime endTime, String userId, String note) {
         this.id = id;
         this.officeId = officeId;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.bookedBy = bookedBy;
+        this.userId = userId;
         this.note = note;
     }
 
@@ -51,12 +51,12 @@ public class BookingResponse {
         this.endTime = endTime;
     }
 
-    public String getBookedBy() {
-        return bookedBy;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setBookedBy(String bookedBy) {
-        this.bookedBy = bookedBy;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getNote() {

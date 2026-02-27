@@ -50,7 +50,7 @@ public class BookingControllerIT {
         // open time slot
         BookingRequest request1 = new BookingRequest();
         request1.setOfficeId(testOffice.getId());
-        request1.setBookedBy("Test A");
+        request1.setUserId("Test A");
         request1.setStartTime(LocalDateTime.of(2026, 3, 1, 9, 0));
         request1.setEndTime(LocalDateTime.of(2026, 3, 1, 11, 0));
 
@@ -60,7 +60,7 @@ public class BookingControllerIT {
         // open time slot
         BookingRequest request2 = new BookingRequest();
         request2.setOfficeId(testOffice.getId());
-        request2.setBookedBy("Test B");
+        request2.setUserId("Test B");
         request2.setStartTime(LocalDateTime.of(2026, 3, 1, 12, 0));
         request2.setEndTime(LocalDateTime.of(2026, 3, 1, 13, 0));
         request2.setNote("Interview");
@@ -71,7 +71,7 @@ public class BookingControllerIT {
         // overlapping
         BookingRequest overlapRequest = new BookingRequest();
         overlapRequest.setOfficeId(testOffice.getId());
-        overlapRequest.setBookedBy("Test C");
+        overlapRequest.setUserId("Test C");
         overlapRequest.setStartTime(LocalDateTime.of(2026, 3, 1, 10, 0));
         overlapRequest.setEndTime(LocalDateTime.of(2026, 3, 1, 12, 0));
 

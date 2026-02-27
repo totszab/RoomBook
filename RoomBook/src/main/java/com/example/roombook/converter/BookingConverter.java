@@ -13,7 +13,7 @@ public class BookingConverter {
                 booking.getOffice().getId(),
                 booking.getStartTime(),
                 booking.getEndTime(),
-                booking.getBookedBy(),
+                booking.getUserId(),
                 booking.getNote()
         );
     }

@@ -6,7 +6,7 @@ public class BookingRequest {
     private Long officeId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String bookedBy;
+    private String userId;
     private String note;
 
     public Long getOfficeId() {
@@ -33,12 +33,12 @@ public class BookingRequest {
         this.endTime = endTime;
     }
 
-    public String getBookedBy() {
-        return bookedBy;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setBookedBy(String bookedBy) {
-        this.bookedBy = bookedBy;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getNote() {

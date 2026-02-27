@@ -43,7 +43,7 @@ public class BookingService {
         booking.setOffice(office);
         booking.setStartTime(request.getStartTime());
         booking.setEndTime(request.getEndTime());
-        booking.setBookedBy(request.getBookedBy());
+        booking.setUserId(request.getUserId());
         booking.setNote(request.getNote());
 
         return bookingRepository.save(booking);
