@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     office_id BIGINT NOT NULL,
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
-    userId VARCHAR(255),
+    user_id VARCHAR(255),
     note VARCHAR(255),
     CONSTRAINT fk_booking_office
     FOREIGN KEY (office_id) REFERENCES offices(id)
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS bookings (
 
 INSERT INTO offices (name, code, capacity)
 SELECT * FROM (
-                  SELECT 'HQ Budapest', 'HQ-BP', 10
+                  SELECT 'HQ Budapest', 'HQ-BP-1', 10
               ) AS tmp
 WHERE NOT EXISTS (
     SELECT 1 FROM offices WHERE code = 'HQ-BP'
@@ -26,7 +26,23 @@ WHERE NOT EXISTS (
 
 INSERT INTO offices (name, code, capacity)
 SELECT * FROM (
-                  SELECT 'HQ Debrecen', 'HQ-DEB', 6
+                  SELECT 'HQ Budapest', 'HQ-BP-2', 20
+              ) AS tmp
+WHERE NOT EXISTS (
+    SELECT 1 FROM offices WHERE code = 'HQ-BP'
+);
+
+INSERT INTO offices (name, code, capacity)
+SELECT * FROM (
+                  SELECT 'HQ Budapest', 'HQ-BP-3', 30
+              ) AS tmp
+WHERE NOT EXISTS (
+    SELECT 1 FROM offices WHERE code = 'HQ-BP'
+);
+
+INSERT INTO offices (name, code, capacity)
+SELECT * FROM (
+                  SELECT 'HQ Debrecen', 'HQ-DEB', 15
               ) AS tmp
 WHERE NOT EXISTS (
     SELECT 1 FROM offices WHERE code = 'HQ-DEB'

@@ -17,7 +17,6 @@ services:
 
   app:
     build: .
-#    image: roombook-app:latest
     container_name: roombook-app
     ports:
       - "8080:8080"
